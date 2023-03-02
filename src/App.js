@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserProfile from './pages/UserProfile/UserProfile';
 import UpdateProfile from './pages/UserProfile/UpdateProfile';
 import Navbar from './components/Navbar/Navbar';
+import Dashboard from './pages/Admin/Dashboard';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/profile/:id" element={<UpdateProfile />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+
+          <Route exact path="/admin" element={<Dashboard />}>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
