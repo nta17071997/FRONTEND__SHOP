@@ -69,12 +69,17 @@
                display: flex;
                justify-content: space-around;
                width: 100%;
+               align-items: center;
+               padding: 10px 0;
                span {
-                   display: flex;
-                   align-items: center;
-                   font-size: 18px;
-                   font-weight: 500;
-                   margin-bottom: 0;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 0;
+                color: #111;
+               }
+               svg{
+                cursor: pointer;
                }
            }
            i.ri-add-circle-line {
@@ -87,6 +92,14 @@
                object-fit: contain;
                cursor: pointer;
                transition: all 0.3s ease;
+               padding: 10px 20px;
+           }
+
+           &:hover{
+            img{
+              transform: scale(0.9);
+            }
+
            }
        }
    }

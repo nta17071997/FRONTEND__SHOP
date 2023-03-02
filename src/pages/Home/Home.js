@@ -3,9 +3,10 @@ import './home.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 // import { motion } from 'framer-motion';
-// import { addToCart } from '../../redux/Slices/cartSlice';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { addToCart } from '../../redux/Slice/cartSlice';
 import { productsFetch } from '../../redux/Slice/productsSlice';
-// import Carousel from '../../components/Carousel/Carousel';
+import Carousel from '../../components/Carousel/Carousel';
 import Pagination from 'react-js-pagination';
 
 const Home = () => {
@@ -23,7 +24,7 @@ const Home = () => {
   }, [dispatch, keyword, currentPage]);
 
   const handleAddToCart = (product) => {
-    // dispatch(addToCart(product));
+    dispatch(addToCart(product));
     navigate('/cart');
   };
   const setCurrentPageNo = (e) => {
@@ -34,7 +35,7 @@ const Home = () => {
   };
   return (
     <div className="home-container">
-   
+      <Carousel />
       <div>
         <form className="searchBox" onSubmit={searchSubmitHandler}>
           <input
@@ -51,22 +52,17 @@ const Home = () => {
           {items.map((product, index) => (
             <div key={index} className="product">
               <div className="product_img">
-                <img
-                 
-                  src={product.image.url}
-                  alt={product.name}
-                />
+                <img src={product.image.url} alt={product.name} />
               </div>
               <Link to={`/product/${product._id}`}>
                 <span>{product.name}</span>
               </Link>
               <div className="details">
                 <span className="price">$ {product.price}</span>
-                <div
-                 
-                  onClick={() => handleAddToCart(product)}
-                >
-                  <i className="ri-add-circle-line"></i>
+                <div>
+                  <AddCircleOutlineIcon
+                    onClick={() => handleAddToCart(product)}
+                  />
                 </div>
               </div>
             </div>
