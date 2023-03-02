@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './navbar.scss';
 import { logoutUser } from '../../redux/Slice/authSlice';
 import avatar from '../../assets/avatar.png';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Navbar = () => {
       </Link>
       <Link to="/cart">
         <div className="nav-bag">
-          <i className="ri-shopping-cart-2-line"></i>
+          <LocalMallIcon/>
           <span className="bag-quantity">{cartTotalQuantity}</span>
         </div>
       </Link>

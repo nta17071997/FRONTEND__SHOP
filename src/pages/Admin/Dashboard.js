@@ -2,6 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
 import './dashboard.scss';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
+import GroupsIcon from '@mui/icons-material/Groups';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
@@ -17,6 +21,7 @@ const Dashboard = () => {
                 id="menu"
               >
                 <li>
+                  <DashboardIcon />
                   <span className="ms-1 mb-4 d-none d-sm-inline ">
                     Dashboard
                   </span>
@@ -29,7 +34,8 @@ const Dashboard = () => {
                     }
                     to="/admin/products"
                   >
-                    <i className="ri-smartphone-line"></i>
+                    <SmartphoneIcon />
+
                     <span className="ms-1 d-none d-sm-inline">Products</span>
                   </NavLink>
                 </li>
@@ -40,7 +46,7 @@ const Dashboard = () => {
                     }
                     to="/admin/users"
                   >
-                    <i className="ri-team-line"></i>
+                    <GroupsIcon />
                     <span className="ms-1 d-none d-sm-inline">Users</span>
                   </NavLink>
                 </li>
@@ -51,7 +57,7 @@ const Dashboard = () => {
                     }
                     to="/admin/orders"
                   >
-                    <i className="ri-shopping-basket-line"></i>
+                    <ReceiptLongIcon />
                     <span className="ms-1 d-none d-sm-inline">Orders</span>
                   </NavLink>
                 </li>
