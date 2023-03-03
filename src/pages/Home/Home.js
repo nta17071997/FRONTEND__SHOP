@@ -17,6 +17,7 @@ const Home = () => {
   );
 
   const [keyword, setKeyword] = useState('');
+  
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

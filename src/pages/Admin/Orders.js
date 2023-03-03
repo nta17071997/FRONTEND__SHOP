@@ -1,14 +1,17 @@
 import React from 'react';
-import { Outlet,useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-const Orders = () => {
-  const navigate = useNavigate()
+const Products = () => {
+  
   return (
     <div>
-     orders
+      <div className="d-flex align-items-center justify-content-between mb-3">
+        <h2>Orders</h2>
        
+      </div>
+      <Outlet />
     </div>
   );
 };
 
-export default Orders;
+export default Products;

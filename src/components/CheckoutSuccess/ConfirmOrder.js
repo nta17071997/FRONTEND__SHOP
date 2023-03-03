@@ -10,12 +10,8 @@ const ConfirmOrder = () => {
   const { cartItems, cartTotalAmount, shippingInfo } = useSelector(
     (state) => state.cart
   );
-  const { name, email, _id } = useSelector((state) => state.auth);
-  const user = {
-    name: name,
-    email: email,
-    _id: _id,
-  };
+  const { name } = useSelector((state) => state.auth);
+ 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
