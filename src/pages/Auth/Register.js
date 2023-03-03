@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../redux/Slice/authSlice';
-
 import { useNavigate } from 'react-router-dom';
+import './auth.scss';
 
 const Register = () => {
   const dispatch = useDispatch();
