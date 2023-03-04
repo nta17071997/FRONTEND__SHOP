@@ -65,7 +65,7 @@ const Dashboard = () => {
               <hr />
             </div>
           </div>
-          <div className="content col-10 p-5">
+          <div className="content col-10">
             <Outlet />
           </div>
         </div>

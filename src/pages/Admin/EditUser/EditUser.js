@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PersonIcon from '@mui/icons-material/Person';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import HttpsIcon from '@mui/icons-material/Https';
 import { useNavigate, useParams } from 'react-router-dom';
 import {  updateUserAdmin } from '../../../redux/Slice/usersSlice';
 import {setHeaders, url } from '../../../redux/Slice/api';
@@ -72,6 +73,15 @@ const EditUser = () => {
                 placeholder="Email"
                 value={user.email}
                 onChange={(e) => setUser({...user, email: e.target.value})}
+              />
+            </div>
+            <div>
+              <HttpsIcon />
+              <input
+                type="password"
+                placeholder="Password"
+                value={user.password}
+                onChange={(e) => setUser({...user, password: e.target.value})}
               />
             </div>
 
