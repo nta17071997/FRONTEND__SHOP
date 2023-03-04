@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { productDelete, productsFetchAdmin } from '../../../redux/Slice/productsSlice';
 import Box from '@mui/material/Box';
 import { DataGrid} from '@mui/x-data-grid';
 import { Link, useNavigate } from 'react-router-dom';
