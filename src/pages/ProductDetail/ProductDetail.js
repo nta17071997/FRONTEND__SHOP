@@ -7,11 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/Slice/cartSlice';
 import Rating from '@mui/material/Rating';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const ProductDetail = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
@@ -26,6 +35,17 @@ const ProductDetail = () => {
     readOnly: true,
     precision: 0.5,
   };
+  const reviewSubmitHandler = () => {
+    const myForm = new FormData();
+
+    myForm.set('rating', rating);
+    myForm.set('comment', comment);
+    myForm.set('productId', params.id);
+
+    // dispatch(newReview(myForm));
+    setShow(false);
+  };
+
   useEffect(() => {
     setIsLoading(true);
     async function fetchData() {
@@ -47,10 +67,7 @@ const ProductDetail = () => {
         <Fragment>
           <div className="row product_detail">
             <div className="col-4">
-              <img
-                src={product.image ? product.image.url : ''}
-                alt=""
-              />
+              <img src={product.image ? product.image.url : ''} alt="" />
             </div>
             <div className="col-8">
               <h2>{product.name}</h2>
@@ -70,6 +87,48 @@ const ProductDetail = () => {
                   BUY IT NOW
                 </Link>
               </div>
+              <Button
+                className="mt-4 btn btn-info"
+                variant="primary"
+                onClick={handleShow}
+              >
+                Review
+              </Button>
+
+              <Modal
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={show}
+                onHide={handleClose}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Submit Review</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Rating
+                    onChange={(e) => setRating(e.target.value)}
+                    value={rating}
+                    size="large"
+                  />
+
+                  <textarea
+                    className="submitDialogTextArea"
+                    cols="30"
+                    rows="5"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  ></textarea>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={reviewSubmitHandler}>
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
           </div>
           <div className="row mb-5">{product.desc}</div>

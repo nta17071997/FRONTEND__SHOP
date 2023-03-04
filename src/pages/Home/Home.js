@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './home.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-// import { motion } from 'framer-motion';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { addToCart } from '../../redux/Slice/cartSlice';
 import { productsFetch } from '../../redux/Slice/productsSlice';
@@ -17,11 +16,12 @@ const Home = () => {
   );
 
   const [keyword, setKeyword] = useState('');
-  
+  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(productsFetch({ keyword, currentPage }));
+    setIsLoading(true)
   }, [dispatch, keyword, currentPage]);
 
   const handleAddToCart = (product) => {
@@ -50,24 +50,28 @@ const Home = () => {
       <section className="home_section" id="container">
         <h2>New Arrivals</h2>
         <div className="products ">
-          {items.map((product, index) => (
-            <div key={index} className="product">
-              <div className="product_img">
-                <img src={product.image.url} alt={product.name} />
-              </div>
-              <Link to={`/product/${product._id}`}>
-                <span>{product.name}</span>
-              </Link>
-              <div className="details">
-                <span className="price">$ {product.price}</span>
-                <div>
-                  <AddCircleOutlineIcon
-                    onClick={() => handleAddToCart(product)}
-                  />
+          {isLoading ? (
+            items.map((product, index) => (
+              <div key={index} className="product">
+                <div className="product_img">
+                  <img src={product.image.url} alt={product.name} />
+                </div>
+                <Link to={`/product/${product._id}`}>
+                  <span>{product.name}</span>
+                </Link>
+                <div className="details">
+                  <span className="price">$ {product.price}</span>
+                  <div>
+                    <AddCircleOutlineIcon
+                      onClick={() => handleAddToCart(product)}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <h2>Loading</h2>
+          )}
         </div>
       </section>
 
@@ -75,7 +79,7 @@ const Home = () => {
         <Pagination
           activePage={currentPage}
           itemsCountPerPage={resultPerPage}
-          totalItemsCount={productsCount}
+          totalItemsCount={productsCount ?productsCount : 5 }
           onChange={setCurrentPageNo}
           nextPageText="Next"
           prevPageText="Prev"
